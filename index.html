@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="dv" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ފަތިސް | Fathis News</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thaana:wght@400;600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent:#0e7c7b;
+    --accent-dark:#09595a;
+    --ink:#16202a;
+    --muted:#6b7680;
+    --line:#e6e9ec;
+    --bg:#ffffff;
+    --soft:#f4f7f8;
+  }
+  /* Dhivehi fonts: uses the installed font first, then a copy in the fonts/ folder */
+  @font-face{
+    font-family:'aammufkF';
+    src:local('Faruma'),local('A_Faruma'),local('Faruma Regular'),local('aammufkF'),
+        url('fonts/aammufkF.ttf') format('truetype'),
+        url('fonts/aammufkF.TTF') format('truetype');
+    font-display:swap;
+  }
+  @font-face{
+    font-family:'MV_Waheed';
+    src:local('MV_Waheed'),local('MV Waheed'),local('MVWaheed'),
+        url('fonts/MV_Waheed.ttf') format('truetype');
+    font-display:swap;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'MV_Waheed','Noto Sans Thaana','Inter',sans-serif;color:var(--ink);background:var(--bg);line-height:1.9}
+  h1,h2,h3,h4,.logo,.section-title{font-family:'aammufkF','Noto Sans Thaana',sans-serif;font-weight:normal}
+  a{color:inherit;text-decoration:none}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  .container{max-width:1250px;margin:0 auto;padding:0 16px}
+
+  /* Top ad */
+  .top-ad{display:flex;justify-content:center;padding:18px 16px}
+  .ad-banner{width:100%;max-width:900px;height:150px;border-radius:6px;
+    background:linear-gradient(120deg,var(--accent),#14a3a1 60%,#f2b632);
+    color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 40px;font-family:'Inter',sans-serif}
+  .ad-banner h3{font-size:30px;font-weight:600;line-height:1.2;direction:ltr}
+  .ad-banner span{background:#fff;color:var(--accent-dark);padding:8px 18px;border-radius:30px;font-weight:600;font-size:14px}
+
+  /* Header */
+  header{border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:0 3px 8px rgba(0,0,0,.04);position:sticky;top:0;background:#fff;z-index:50}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:20px}
+  .logo{font-size:30px;font-weight:800;color:var(--accent)}
+  .logo small{display:block;font-family:'Inter';font-size:10px;color:var(--muted);line-height:1;letter-spacing:2px;text-align:center}
+  .menu{display:flex;gap:34px;list-style:none;align-items:center;font-size:17px;font-weight:600}
+  .menu a:hover{color:var(--accent)}
+  .more-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;position:relative}
+  .dropdown{display:none;position:absolute;top:44px;left:0;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 0;min-width:160px;box-shadow:0 8px 20px rgba(0,0,0,.08)}
+  .dropdown a{display:block;padding:6px 18px;font-size:15px}
+  .dropdown a:hover{background:var(--soft)}
+  .dropdown.open{display:block}
+  .actions{display:flex;gap:12px;align-items:center;font-family:'Inter'}
+  .btn{padding:8px 22px;border-radius:30px;font-size:14px;font-weight:600;cursor:pointer;border:1px solid var(--ink);background:#fff}
+  .btn.dark{background:var(--ink);color:#fff}
+  .icon-btn{background:none;border:none;cursor:pointer;padding:6px}
+  .hamburger{display:none}
+  .search-bar{display:none;padding:12px 0 16px}
+  .search-bar.open{display:block}
+  .search-bar input{width:100%;padding:12px 18px;border:1px solid var(--line);border-radius:30px;font-family:inherit;font-size:16px;outline:none}
+  .search-bar input:focus{border-color:var(--accent)}
+
+  /* Hero grid */
+  .hero{display:grid;grid-template-columns:300px 1fr 300px;gap:0;margin-top:40px}
+  .hero > section{padding:0 16px}
+  .hero > section:not(:last-child){border-left:1px solid var(--line)}
+
+  .side-feature .thumb{aspect-ratio:4/3;border-radius:4px;overflow:hidden}
+  .side-feature h2{font-size:24px;font-weight:800;line-height:1.7;margin:18px 0 10px}
+  .side-feature p{color:#3b4650;font-size:15px}
+
+  .main-story .thumb{aspect-ratio:16/11;overflow:hidden;border-radius:4px}
+  .tag{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:30px;padding:2px 16px;font-size:14px;margin:18px 0 6px;color:var(--accent-dark);font-weight:600}
+  .main-story h1{font-size:38px;font-weight:800;line-height:1.65;margin-bottom:12px}
+  .main-story h1 a:hover,.side-feature h2 a:hover,.list-item h4 a:hover,.card h4 a:hover{color:var(--accent)}
+  .main-story p{color:#3b4650;font-size:17px}
+
+  .meta{display:flex;align-items:center;gap:16px;margin-top:14px;font-family:'Inter','MV_Waheed';font-size:13px;color:var(--muted)}
+  .meta .pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:20px;padding:0 10px}
+  .meta .author{display:flex;align-items:center;gap:8px;font-family:'MV_Waheed','Noto Sans Thaana'}
+  .avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#f2b632)}
+  .meta svg{width:13px;height:13px}
+
+  .side-ad{height:250px;border-radius:4px;margin-bottom:20px;background:linear-gradient(160deg,#fde8e0,#f6c9d8);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px}
+  .side-ad b{font-size:20px;color:#b23a5c}
+  .ad-label{font-family:'Inter';font-size:11px;color:var(--muted);text-align:left;margin-bottom:4px}
+
+  .list-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .list-item .thumb{flex:0 0 96px;height:90px;overflow:hidden;border-radius:3px}
+  .list-item h4{font-size:16px;font-weight:700;line-height:1.75}
+  .list-item .meta{margin-top:6px}
+
+  /* Featured section */
+  .section-title{text-align:center;font-size:30px;font-weight:800;margin:70px 0 20px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .section-title span{border-bottom:3px solid var(--accent);padding-bottom:12px}
+  .feature{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:center;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .feature h2{font-size:34px;font-weight:800;line-height:1.7}
+  .feature p{color:#3b4650;font-size:16px;margin-top:10px}
+  .feature .thumb{aspect-ratio:4/3;overflow:hidden;border-radius:4px}
+
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);margin-top:16px}
+  .card{padding:0 12px}
+  .card:not(:last-child){border-left:1px solid var(--line)}
+  .card .thumb{aspect-ratio:4/3.1;overflow:hidden;border-radius:3px}
+  .card h4{font-size:17px;font-weight:700;line-height:1.75;margin-top:12px}
+
+  .thumb img{transition:transform .4s}
+  .thumb:hover img{transform:scale(1.05)}
+
+  footer{margin-top:70px;background:var(--ink);color:#c9d1d7;padding:40px 0 20px}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;align-items:center}
+  footer .logo{color:#fff}
+  footer ul{list-style:none;display:flex;gap:22px;flex-wrap:wrap}
+  footer a:hover{color:#fff}
+  .copy{text-align:center;font-family:'Inter';font-size:13px;margin-top:26px;padding-top:16px;border-top:1px solid #2c3944;color:#8794a0}
+
+  /* Headings use the font's own weight (no fake bold) */
+  h1,h2,h3,h4,.logo{font-weight:normal!important}
+
+  /* Responsive */
+  @media (max-width:1100px){
+    .hero{grid-template-columns:1fr 1fr}
+    .main-story{grid-column:1 / -1;order:-1;border-left:none!important;margin-bottom:30px}
+    .menu{gap:20px}
+  }
+  @media (max-width:860px){
+    .menu{display:none;position:absolute;top:78px;right:0;left:0;background:#fff;flex-direction:column;align-items:flex-start;padding:16px 24px;gap:12px;border-bottom:1px solid var(--line)}
+    .menu.open{display:flex}
+    .hamburger{display:block}
+    .actions .btn{display:none}
+    .feature{grid-template-columns:1fr}
+    .feature .thumb{order:-1}
+    .cards{grid-template-columns:1fr 1fr;row-gap:28px}
+    .card:nth-child(2){border-left:none}
+  }
+  @media (max-width:600px){
+    .hero{grid-template-columns:1fr}
+    .hero > section{border-left:none!important;padding:0;margin-bottom:28px}
+    .main-story h1{font-size:28px}
+    .feature h2{font-size:26px}
+    .cards{grid-template-columns:1fr}
+    .card{border-left:none!important;padding:0}
+    .ad-banner{height:110px;padding:0 20px}
+    .ad-banner h3{font-size:20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="top-ad">
+  <div class="ad-banner">
+    <h3>Your Ad Here<br><small style="font-size:15px;font-weight:400">900 × 150 banner space</small></h3>
+    <span>Advertise</span>
+  </div>
+</div>
+
+<header>
+  <div class="container">
+    <div class="nav">
+      <a href="#" class="logo">ފަތިސް<small>FATHIS</small></a>
+
+      <ul class="menu" id="menu">
+        <li><a href="#">ޚަބަރު</a></li>
+        <li><a href="#">ރިޕޯޓު</a></li>
+        <li><a href="#">ވިޔަފާރި</a></li>
+        <li><a href="#">މުނިފޫހިފިލުވުން</a></li>
+        <li><a href="#">ކުޅިވަރު</a></li>
+        <li><a href="#">ދުނިޔެ</a></li>
+        <li>
+          <button class="more-btn" id="moreBtn" aria-label="more">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            <div class="dropdown" id="dropdown">
+              <a href="#">ފޮޓޯ</a>
+              <a href="#">ވީޑިއޯ</a>
+              <a href="#">ހިޔާލު</a>
+              <a href="#">ސިއްހަތު</a>
+            </div>
+          </button>
+        </li>
+      </ul>
+
+      <div class="actions">
+        <button class="icon-btn" id="searchBtn" aria-label="search">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+        <button class="btn">Register</button>
+        <button class="btn dark">Login</button>
+        <button class="icon-btn hamburger" id="hamburger" aria-label="menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="search-bar" id="searchBar">
+      <input type="text" placeholder="ހޯދާ...">
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="hero">
+    <!-- Right column: side feature + second story -->
+    <section class="side-feature">
+      <a href="#" class="thumb"><img src="https://picsum.photos/seed/fathis1/600/450" alt=""></a>
+      <h2><a href="#">ރާއްޖޭގެ ފަރުތަކުގެ ހާލަތު ދިރާސާކުރުމަށް އާ މަޝްރޫއެއް</a></h2>
+      <p>ކޯރަލް ބްލީޗިން ގެ ސަބަބުން އަސަރުކޮށްފައިވާ ފަރުތައް އަލުން ދިރުވުމަށް ސައިންސްވެރިން މަސައްކަތް ފަށައިފި.</p>
+      <div class="meta">
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg>5</span>
+        <span>🕒 4 hrs</span>
+      </div>
+
+      <div style="border-top:1px solid var(--line);margin-top:22px;padding-top:22px">
+        <a href="#" class="thumb" style="display:block;aspect-ratio:4/3;overflow:hidden;border-radius:4px"><img src="https://picsum.photos/seed/fathis2/600/450" alt=""></a>
+        <h2><a href="#">ޓެކްސް ދެއްކުމުގެ ސުންގަޑި އިތުރު ދެ ހަފްތާއަށް ދިގުކޮށްފި</a></h2>
+        <p>ވިޔަފާރިތަކުން ހުށަހެޅި އެދުމަކަށް ބަލައި ސުންގަޑި ދިގުކުރީ ކަމަށް އިދާރާއިން ބުނެއެވެ.</p>
+      </div>
+    </section>
+
+    <!-- Center: main story -->
+    <section class="main-story">
+      <a href="#" class="thumb" style="display:block"><img src="https://picsum.photos/seed/fathis3/1200/820" alt=""></a>
+      <a href="#" class="tag">ޚަބަރު ‹</a>
+      <h1><a href="#">މާލޭގައި އާ ޕާކެއް ހުޅުވައި، ރައްޔިތުންނަށް ހިތްހަމަޖެހޭ ތަނެއް</a></h1>
+      <p>ހަތަރު ހެކްޓަރުގެ ބިމެއްގައި ބިނާކުރި މި ޕާކުގައި ކުޑަކުދިން ކުޅޭނެ ސަރަހައްދު، ދުވާ މަގު އަދި ގަސްތަކުން ފުރިފައިވާ ބަގީޗާއެއް ހިމެނެއެވެ. ޕާކު ހުޅުވާލާފައި ހުންނާނީ ކޮންމެ ދުވަހަކު ހެނދުނު 6 އިން ރޭގަނޑު 11 އަށެވެ.</p>
+      <div class="meta">
+        <span class="author"><span class="avatar"></span>ޚަބަރު ޑެސްކް</span>
+        <span>🕒 5 hrs</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg>32</span>
+      </div>
+    </section>
+
+    <!-- Left column: ad + latest list -->
+    <section class="latest">
+      <div class="ad-label">Advertisement</div>
+      <div class="side-ad">
+        <b>އިޝްތިހާރު</b>
+        <span style="font-family:Inter;font-size:13px;color:#7a4b5a">300 × 250 ad space</span>
+      </div>
+
+      <article class="list-item">
+        <a href="#" class="thumb"><img src="https://picsum.photos/seed/fathis4/200/200" alt=""></a>
+        <div>
+          <h4><a href="#">ފަތުރުވެރިންގެ އަދަދު މި އަހަރު އަލުން ރެކޯޑަކަށް</a></h4>
+          <div class="meta"><span class="pill">💬 51</span><span>🕒 8 hrs</span></div>
+        </div>
+      </article>
+      <article class="list-item">
+        <a href="#" class="thumb"><img src="https://picsum.photos/seed/fathis5/200/200" alt=""></a>
+        <div>
+          <h4><a href="#">ޑައިވިން ކުރުމުގެ ސަލާމަތީ ތަމްރީނެއް ފަށައިފި</a></h4>
+          <div class="meta"><span class="pill">💬 9</span><span>🕒 3 hrs</span></div>
+        </div>
+      </article>
+      <article class="list-item">
+        <a href="#" class="thumb"><img src="https://picsum.photos/seed/fathis6/200/200" alt=""></a>
+        <div>
+          <h4><a href="#">224 ދަރިވަރުން ސްކޮލަރޝިޕާ އެކު ބޭރަށް</a></h4>
+          <div class="meta"><span class="pill">💬 2</span><span>🕒 5 hrs</span></div>
+        </div>
+      </article>
+      <article class="list-item">
+        <a href="#" class="thumb"><img src="https://picsum.photos/seed/fathis7/200/200" alt=""></a>
+        <div>
+          <h4><a href="#">ދަތުރުފަތުރު ފަސޭހަކުރުމަށް 4 އާ ފެރީ ރޫޓެއް</a></h4>
+          <div class="meta"><span class="pill">💬 8</span><span>🕒 10 hrs</span></div>
+        </div>
+      </article>
+      <article class="list-item">
+        <a href="#" class="thumb"><img src="https://picsum.photos/seed/fathis8/200/200" alt=""></a>
+        <div>
+          <h4><a href="#">ޒުވާން ވިޔަފާރިވެރިންނަށް އާ ލޯން ސްކީމެއް</a></h4>
+          <div class="meta"><span class="pill">💬 3</span><span>🕒 11 hrs</span></div>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <!-- Featured section -->
+  <h3 class="section-title"><span>ފީޗަރ</span></h3>
+
+  <div class="feature">
+    <div>
+      <a href="#" class="tag">ރިޕޯޓު ‹</a>
+      <h2><a href="#">ދޯނި ބަނދެ 40 އަހަރު: ކާފަ ކިޔައިދޭ ރާއްޖޭގެ ކަނޑުގެ ވާހަކަ</a></h2>
+      <p>ރާއްޖޭގެ ސަގާފަތުގެ މުހިންމު ބައެއް ކަމަށްވާ ދޯނި ބެނުމުގެ ހުނަރު ދަރިންނަށް ދަސްކޮށްދެމުން ދާ ބޭފުޅެއްގެ ވާހަކަ.</p>
+      <div class="meta">
+        <span class="author"><span class="avatar"></span>ފީޗަރ ޑެސްކް</span>
+        <span>🕒 10 hrs</span>
+        <span class="pill">💬 4</span>
+      </div>
+    </div>
+    <a href="#" class="thumb"><img src="https://picsum.photos/seed/fathis9/900/680" alt=""></a>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <a href="#" class="thumb" style="display:block"><img src="https://picsum.photos/seed/fathis10/400/310" alt=""></a>
+      <h4><a href="#">ބައިނަލްއަގުވާމީ ގުޅުން ވަރުގަދަކުރުމަށް ބައްދަލުވުމެއް</a></h4>
+    </article>
+    <article class="card">
+      <a href="#" class="thumb" style="display:block"><img src="https://picsum.photos/seed/fathis11/400/310" alt=""></a>
+      <h4><a href="#">ކަނޑުގެ ކުނި ސާފުކުރުމުގެ ހަރަކާތެއްގައި ސަތޭކަ ބައިވެރިން</a></h4>
+    </article>
+    <article class="card">
+      <a href="#" class="thumb" style="display:block"><img src="https://picsum.photos/seed/fathis12/400/310" alt=""></a>
+      <h4><a href="#">ފަހަރުގެ ފޮޓޯތަކުން ދައްކާ އެކި ޒަމާނުގެ މާލެ</a></h4>
+    </article>
+    <article class="card">
+      <a href="#" class="thumb" style="display:block"><img src="https://picsum.photos/seed/fathis13/400/310" alt=""></a>
+      <h4><a href="#">ހޮސްޕިޓަލުގައި އާ ޚިދުމަތެއް ފަށައިފި</a></h4>
+    </article>
+  </div>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <a href="#" class="logo">ފަތިސް</a>
+      <ul>
+        <li><a href="#">އަޅުގަނޑުމެންގެ ވާހަކަ</a></li>
+        <li><a href="#">ގުޅުއްވާ</a></li>
+        <li><a href="#">އިޝްތިހާރު</a></li>
+        <li><a href="#">ޕްރައިވެސީ ޕޮލިސީ</a></li>
+      </ul>
+    </div>
+    <div class="copy">© 2026 Fathis News. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const $ = id => document.getElementById(id);
+  $('hamburger').onclick = () => $('menu').classList.toggle('open');
+  $('searchBtn').onclick = () => { $('searchBar').classList.toggle('open'); $('searchBar').querySelector('input').focus(); };
+  $('moreBtn').onclick = e => { e.stopPropagation(); $('dropdown').classList.toggle('open'); };
+  document.addEventListener('click', () => $('dropdown').classList.remove('open'));
+</script>
+</body>
+</html>

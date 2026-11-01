@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="dv" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ޚަބަރު | Khabaru News</title>
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thaana:wght@400;600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="top-ad">
+  <div class="ad-banner">
+    <h3>Your Ad Here<br><small style="font-size:15px;font-weight:400">900 × 150 banner space</small></h3>
+    <span>Advertise</span>
+  </div>
+</div>
+
+<header>
+  <div class="container">
+    <div class="nav">
+      <a href="../index.html" class="logo"><img src="../logo.png" alt="ޚަބަރު"><span class="logo-text">ޚަބަރު<small>KHABARU</small></span></a>
+
+      <ul class="menu" id="menu">
+        <li><a href="#">ޚަބަރު</a></li>
+        <li><a href="#">ރިޕޯޓު</a></li>
+        <li><a href="#">ވިޔަފާރި</a></li>
+        <li><a href="#">މުނިފޫހިފިލުވުން</a></li>
+        <li><a href="#">ކުޅިވަރު</a></li>
+        <li><a href="#">ދުނިޔެ</a></li>
+        <li>
+          <button class="more-btn" id="moreBtn" aria-label="more">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            <div class="dropdown" id="dropdown">
+              <a href="#">ފޮޓޯ</a>
+              <a href="#">ވީޑިއޯ</a>
+              <a href="#">ހިޔާލު</a>
+              <a href="#">ސިއްހަތު</a>
+            </div>
+          </button>
+        </li>
+      </ul>
+
+      <div class="actions">
+        <button class="icon-btn" id="searchBtn" aria-label="search">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+        <button class="btn">Register</button>
+        <button class="btn dark">Login</button>
+        <button class="icon-btn hamburger" id="hamburger" aria-label="menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="search-bar" id="searchBar">
+      <input type="text" placeholder="ހޯދާ...">
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <article class="article" id="article"></article>
+
+  <h3 class="section-title"><span>އިތުރު ޚަބަރު</span></h3>
+  <div class="cards" id="related"></div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <a href="../index.html" class="logo"><img src="../logo.png" alt="ޚަބަރު"><span class="logo-text">ޚަބަރު</span></a>
+      <ul>
+        <li><a href="#">އަޅުގަނޑުމެންގެ ވާހަކަ</a></li>
+        <li><a href="#">ގުޅުއްވާ</a></li>
+        <li><a href="#">އިޝްތިހާރު</a></li>
+        <li><a href="#">ޕްރައިވެސީ ޕޮލިސީ</a></li>
+      </ul>
+    </div>
+    <div class="copy">© 2026 Khabaru News. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="../assets/articles.js"></script>
+<script>
+  var commentIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg>';
+  function esc(t){ var d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
+  function img(src){ return /^https?:/.test(src) ? src : '../' + src; }
+
+  var id = parseInt(new URLSearchParams(location.search).get('id'), 10);
+  var a = ARTICLES.find(function(x){ return x.id === id; });
+  var box = document.getElementById('article');
+
+  if (!a) {
+    box.innerHTML = '<div class="not-found"><h1>ޚަބަރު ނުފެނުނު</h1><a class="back" href="../index.html">މައި ސަފްހާއަށް ›</a></div>';
+  } else {
+    document.title = a.title + ' | ޚަބަރު';
+    box.innerHTML =
+      '<span class="tag">' + esc(a.category) + ' ‹</span>' +
+      '<h1>' + esc(a.title) + '</h1>' +
+      '<p class="lead">' + esc(a.lead) + '</p>' +
+      '<div class="meta">' +
+        '<span class="author"><span class="avatar"></span>' + esc(a.author) + '</span>' +
+        '<span>🕒 ' + esc(a.time) + '</span>' +
+        '<span class="pill">' + commentIcon + a.comments + '</span>' +
+      '</div>' +
+      '<div class="thumb hero-img"><img src="' + img(a.image) + '" alt=""></div>' +
+      '<div class="body">' + a.body.map(function(p){ return '<p>' + esc(p) + '</p>'; }).join('') + '</div>' +
+      '<div class="share"><span>ހިއްސާކުރައްވާ:</span>' +
+        '<button onclick="copyLink(this)">ލިންކް ކޮޕީ</button>' +
+        '<button onclick="window.open(\'https://www.facebook.com/sharer/sharer.php?u=\'+encodeURIComponent(location.href))">Facebook</button>' +
+        '<button onclick="window.open(\'https://twitter.com/intent/tweet?url=\'+encodeURIComponent(location.href))">X</button>' +
+      '</div>' +
+      '<a class="back" href="../index.html">› މައި ސަފްހާއަށް</a>';
+  }
+
+  function copyLink(btn){
+    navigator.clipboard.writeText(location.href).then(function(){ btn.textContent='ކޮޕީ ކުރެވިއްޖެ ✓'; });
+  }
+
+  // 4 other stories
+  var others = ARTICLES.filter(function(x){ return x.id !== id; }).slice(0, 4);
+  document.getElementById('related').innerHTML = others.map(function(o){
+    var link = 'index.html?id=' + o.id;
+    return '<article class="card"><a href="' + link + '" class="thumb" style="aspect-ratio:4/3.1"><img src="' + img(o.image) + '" alt=""></a>' +
+           '<h4><a href="' + link + '">' + esc(o.title) + '</a></h4></article>';
+  }).join('');
+</script>
+<script src="../assets/main.js"></script>
+</body>
+</html>
